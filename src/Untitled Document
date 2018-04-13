@@ -1,0 +1,1 @@
+pyinstaller --onefile --path /home/ojas/PycharmProjects/Term_Project/lib/python2.7/site-packages/ check.py
