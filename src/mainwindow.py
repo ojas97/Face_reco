@@ -2,7 +2,6 @@ from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import SIGNAL
 from PyQt4.QtGui import QFormLayout, QDialog
 from shutil import copyfile
-from pathlib import Path
 import check
 
 try:
@@ -94,9 +93,10 @@ class Ui_MainWindow(QDialog):
     def button_click_1(self):
         image_name = self.image_name.text()
         image_folder = self.image_folder.text()
-        image = Path(image_folder) / image_name
-        if image.isfile():
-            copyfile(str(image), path)
+        # image = Path(image_folder) / image_name
+        # if image.isfile():
+        #  copyfile(str(image), path)
+        print(image_name, image_folder)
 
     def start_recognising(self):
         known_face_encodings = []
@@ -105,10 +105,10 @@ class Ui_MainWindow(QDialog):
         check.recognise(known_face_encodings, known_face_names)
 
 
-if __name__ == "__main__":
-    import sys
-    app = QtGui.QApplication(sys.argv)
-    MainWindow = QtGui.QMainWindow()
-    ui = Ui_MainWindow()
-    MainWindow.show()
-    sys.exit(app.exec_())
+import sys
+app = QtGui.QApplication(sys.argv)
+MainWindow = QtGui.QMainWindow()
+ui = Ui_MainWindow()
+MainWindow.show()
+sys.exit(app.exec_())
+

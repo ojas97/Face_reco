@@ -32,6 +32,7 @@ def recognise(known_face_encodings,known_face_names):
     face_names = []
     process_this_frame = True
     unique=[]
+    i=0
 
     while True:
         # Grab a single frame of video
@@ -58,11 +59,20 @@ def recognise(known_face_encodings,known_face_names):
 
                 # If a match was found in known_face_encodings, just use the first one.
                 if min(matches)<=0.6:
-                    first_match_index = matches.index(min(matches))
-                    name = known_face_names[first_match_index]
+                    match_index = matches.index(min(matches))
+                    name = known_face_names[match_index]
+
+                if name == 'Unknown':
+                    i+=1
+                    known_face_encodings.append(face_encoding)
+                    name='Unknown'+str(i)
+                    known_face_names.append(name)
 
                 face_names.append(name)
         process_this_frame = not process_this_frame
+
+
+
         for name in face_names:
             if name not in unique:
                 unique.append(name)
@@ -94,15 +104,16 @@ def recognise(known_face_encodings,known_face_names):
 
         # Hit 'q' on the keyboard to quit!
         if cv2.waitKey(1) & 0xFF == ord('q'):
+            print unique
             break
 
     # Release handle to the webcam
     video_capture.release()
     cv2.destroyAllWindows()
 
-#if __name__ == "__main__":
-#   known_face_encodings=[]
-#   known_face_names=[]
-#   path = '//home//ojas//PycharmProjects//Term_Project//src//Images//*.jpg'
-#    load_images(path)
-#    recognise(known_face_encodings,known_face_names)
+if __name__ == "__main__":
+    known_face_encodings=[]
+    known_face_names=[]
+    path = '//home//ojas//PycharmProjects//Term_Project//src//Images//*.jpg'
+    load_images(path)
+    recognise(known_face_encodings,known_face_names)
