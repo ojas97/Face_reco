@@ -100,9 +100,9 @@ def recognise(known_face_encodings,known_face_names):
     video_capture.release()
     cv2.destroyAllWindows()
 
-if __name__ == "__main__":
-    known_face_encodings=[]
-    known_face_names=[]
-    path = '//home//ojas//PycharmProjects//Term_Project//src//Images//*.jpg'
-    load_images(path)
-    recognise(known_face_encodings,known_face_names)
+#if __name__ == "__main__":
+#   known_face_encodings=[]
+#   known_face_names=[]
+#   path = '//home//ojas//PycharmProjects//Term_Project//src//Images//*.jpg'
+#    load_images(path)
+#    recognise(known_face_encodings,known_face_names)
